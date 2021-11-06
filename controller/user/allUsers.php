@@ -8,9 +8,9 @@ include "../../DAO/DAOUser/allUsers.php";
 include "../../DAO/DAOUser/gettingType.php";
 include "./helpers/isAdmin.php";
 
-$getCredentials = json_decode(file_get_contents("php://input"));
+$getData = json_decode(file_get_contents("php://input"));
 
-$adminFlag = isAdmin($getCredentials);
+$adminFlag = isAdmin($getData);
 
 $JWTCheck = "s";
 

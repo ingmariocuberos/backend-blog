@@ -5,7 +5,7 @@
 function showId($email){
     $bd = DBConnection();
     try {
-        $sentence = $bd->prepare("SELECT id_user
+        $sentence = $bd->prepare("SELECT id_user, name, usertype
                                     FROM `Users`
                                     WHERE email = (?)");        
         

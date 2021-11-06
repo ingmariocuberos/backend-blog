@@ -24,7 +24,7 @@ if(isset($resultDao[0])){
 
         $data = array("ok" => "true", "token" => Auth::SignIn([
             'id' => $uid
-        ]));
+        ]), "name" => $resultDao[0]->name, "usertype" => $resultDao[0]->usertype, "email" => $resultDao[0]->email);
     
         echo json_encode($data);
     
@@ -32,7 +32,7 @@ if(isset($resultDao[0])){
 
 } else {
 
-    $data = array("ok" => "false", "msg" => "Email y/o password incorrectos", "dato" => "$resultadoDao");
+    $data = array("ok" => "false", "msg" => "Email y/o password incorrectos");
     
         echo json_encode($data);
 }

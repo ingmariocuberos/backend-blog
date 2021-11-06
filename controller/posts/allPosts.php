@@ -4,12 +4,7 @@ include_once "cors.php";
 include "../../JWTValidate.php";
 include "../../DAO/DAOPosts/allPosts.php";
 
-if (!isset($_GET["post"])) {
-    echo json_encode(null);
-    exit;
-}
-
-$getData = $_GET["post"];
+$getData = json_decode(file_get_contents("php://input"));
 
 $JWTCheck="init";
 
@@ -19,7 +14,7 @@ try {
     
 }
 
-if($getData == "all" && $JWTCheck==null){
+if($getData->post == "all" && $JWTCheck==null){
 
     $resultDao = allPosts();
 
@@ -29,7 +24,7 @@ if($getData == "all" && $JWTCheck==null){
 
 } else if($JWTCheck!=null){
 
-    $data = array("ok" => "false", "msg" => "Expired");
+    $data = array("ok" => "false", "msg" => "Expired", "token" => $getData->token);
 
     echo json_encode($data);
 

@@ -21,7 +21,7 @@ if($resultDao){
 
     $data = array("ok" => "true", "id" => $uid, "token" => Auth::SignIn([
                         'id' => $uid
-                    ]));
+                    ]), "name" => $user->getName(), "usertype" => $user->getType(), "email" => $user->getEmail());
 
     echo json_encode($data);
 

@@ -3,14 +3,9 @@
 include_once "cors.php";
 include "../../DAO/DAOCategory/allCategories.php";
 
-if (!isset($_GET["category"])) {
-    echo json_encode(null);
-    exit;
-}
+$getData = json_decode(file_get_contents("php://input"));
 
-$getData = $_GET["category"];
-
-if($getData == "all"){
+if($getData->category == "all"){
 
     $resultDao = allCategories();
 
@@ -19,9 +14,4 @@ if($getData == "all"){
     echo json_encode($data);
 
 }
-
-
-
-
-
 ?>

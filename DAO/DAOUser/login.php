@@ -8,7 +8,7 @@ function login($email)
 {
     $bd = DBConnection();
     try {
-        $sentence = $bd->prepare("SELECT email, password
+        $sentence = $bd->prepare("SELECT id_user, email, password, name, usertype
                                     FROM `Users`
                                     WHERE email=(?)");        
         
