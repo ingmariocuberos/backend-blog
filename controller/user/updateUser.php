@@ -1,6 +1,8 @@
 <?php
 
 include_once "cors.php";
+include "../../JWTValidate.php";
+
 include "../../model/UserModel.php";
 include "../../DAO/DAOUser/updateUser.php";
 include "../../DAO/DAOUser/gettingType.php";
@@ -10,9 +12,17 @@ $getData = json_decode(file_get_contents("php://input"));
 
 $user = new UserModel($getData->name, $getData->uemail, $getData->password, $getData->phone, $getData->type, $getData->creationDate, $getData->updateDate);
 
+$JWTCheck = "s";
+
+try {
+    $JWTCheck = Auth::Check($getData->token);
+} catch (\Throwable $th) {
+    
+}
+
 $adminFlag = isAdmin($getData);
 
-if($adminFlag){
+if($adminFlag && $JWTCheck==null){
 
     $resultDao = updateUser($getData->id, $user);
 
@@ -29,9 +39,15 @@ if($adminFlag){
         echo json_encode($data);
     }
 
+} else if($JWTCheck!=null){
+
+    $data = array("ok" => "false", "msg" => "Expired");
+
+    echo json_encode($data);
+
 } else {
 
-    $data = array("ok" => "false", "msg" => "No cuenta con permisos de administrador");
+    $data = array("ok" => "false", "msg" => "No cuenta con permisos");
 
     echo json_encode($data);
 }

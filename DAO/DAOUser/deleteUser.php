@@ -2,7 +2,7 @@
 
 include "../../model/DBConnection/DBConnection.php";
 
-//Consultar todos los usuarios
+//Eliminar usuario
 
 function deleteUser($idUser)
 {

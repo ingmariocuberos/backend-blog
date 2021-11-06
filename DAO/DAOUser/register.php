@@ -17,8 +17,7 @@ function register($user)
                             $user->getCreationDate(),
                             $user->getUpdateDate(),
                         ]);
-        $data = array("ok" => "true", "token" => "alsdfhasdlfhaoifrhwekfsd");
-        return $data;
+        return true;
     } catch (\Throwable $th) {
         echo $th;
     }

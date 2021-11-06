@@ -10,7 +10,7 @@ class CategoryModel{
 
     }
 
-    public function getCategory(){
+    public function getCategoryName(){
         return $this->categoryName;
     }
 
